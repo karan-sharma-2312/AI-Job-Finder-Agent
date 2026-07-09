@@ -144,7 +144,8 @@ async def _run_actor_async() -> None:
         summary = run_bundle["summary"]
         await Actor.push_data(jobs)
         await Actor.push_data({"recordType": "RUN_SUMMARY", **summary})
-        Actor.log.info("Run finished", jobs_count=len(jobs), returned=summary.get("counts", {}).get("returned", 0))
+        returned_count = summary.get("counts", {}).get("returned", 0)
+        Actor.log.info("Run finished: jobs_count=%s returned=%s", len(jobs), returned_count)
 
 
 @app.command()
