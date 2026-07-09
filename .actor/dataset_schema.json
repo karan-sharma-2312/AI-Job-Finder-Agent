@@ -1,0 +1,108 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "recordType": {
+        "type": ["string", "null"],
+        "title": "Record type",
+        "description": "Record discriminator. RUN_SUMMARY indicates a summary record.",
+        "example": "RUN_SUMMARY"
+      },
+      "source": {
+        "type": ["string", "null"],
+        "title": "Source",
+        "description": "Job source plugin name.",
+        "example": "linkedin"
+      },
+      "company": {
+        "type": ["string", "null"],
+        "title": "Company",
+        "description": "Company name for job records.",
+        "example": "Acme AI"
+      },
+      "title": {
+        "type": ["string", "null"],
+        "title": "Job title",
+        "description": "Job title for job records.",
+        "example": "Python Automation Engineer"
+      },
+      "location": {
+        "type": ["string", "null"],
+        "title": "Location",
+        "description": "Job location string.",
+        "example": "Bangalore"
+      },
+      "apply_url": {
+        "type": ["string", "null"],
+        "title": "Apply URL",
+        "description": "Direct application URL when available.",
+        "example": "https://example.com/jobs/123"
+      },
+      "confidence_score": {
+        "type": ["number", "null"],
+        "title": "Confidence score",
+        "description": "Normalized confidence score for extracted record.",
+        "example": 0.83
+      },
+      "generatedAt": {
+        "type": ["string", "null"],
+        "title": "Generated at",
+        "description": "Timestamp for summary record generation.",
+        "example": "2026-07-09T04:43:38.860006+00:00"
+      },
+      "counts": {
+        "type": ["object", "null"],
+        "title": "Run counts",
+        "description": "Aggregate counters for collected, filtered, and returned items.",
+        "example": {
+          "collected": 10,
+          "afterFilters": 7,
+          "duplicatesRemoved": 0,
+          "returned": 7
+        }
+      }
+    }
+  },
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "description": "Main table view for job records and summary metadata.",
+      "transformation": {
+        "fields": [
+          "recordType",
+          "source",
+          "company",
+          "title",
+          "location",
+          "apply_url",
+          "confidence_score",
+          "generatedAt",
+          "counts"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "apply_url": {
+            "label": "Apply URL",
+            "format": "link"
+          },
+          "confidence_score": {
+            "label": "Confidence",
+            "format": "number"
+          },
+          "generatedAt": {
+            "label": "Generated",
+            "format": "date"
+          },
+          "counts": {
+            "label": "Counts",
+            "format": "object"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "actorKeyValueStoreSchemaVersion": 1,
+  "title": "AI Job Finder Key-Value Store Schema",
+  "description": "Collections for files and reports produced by the actor.",
+  "collections": {
+    "reports": {
+      "title": "Reports",
+      "description": "Generated report files stored with report- prefix.",
+      "keyPrefix": "report-"
+    },
+    "artifacts": {
+      "title": "Artifacts",
+      "description": "Generated artifacts stored with artifact- prefix.",
+      "keyPrefix": "artifact-"
+    },
+    "input": {
+      "title": "Input record",
+      "description": "Actor input snapshot if stored in key-value store.",
+      "key": "INPUT"
+    }
+  }
+}
