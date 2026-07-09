@@ -1,5 +1,5 @@
 Param(
-    [string]$InputFile = "docs/sample_input.json"
+    [string]$InputFile = ".actor/sample_input.json"
 )
 
 $ErrorActionPreference = "Stop"

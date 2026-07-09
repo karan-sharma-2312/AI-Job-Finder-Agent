@@ -20,7 +20,7 @@ Production-grade Python Actor for multi-source job discovery, parser normalizati
 Local run:
 
 ```powershell
-python main.py run-local --input-file docs/sample_input.json --output-file exports/jobs.json
+python main.py run-local --input-file .actor/sample_input.json --output-file exports/jobs.json
 ```
 
 Apify run:
@@ -85,12 +85,14 @@ If `ENABLE_PROXY=false`, proxy is not used.
 
 1. Actor metadata: `.actor/actor.json`
 2. Actor GUI input schema: `.actor/input_schema.json`
-3. Sample JSON input: `docs/sample_input.json`
-4. Apify deployment phases: `docs/PHASES_GIT_TO_APIFY.md`
-5. Apify deployment guide: `docs/APIFY_DEPLOYMENT_GUIDE.md`
-6. CI workflow: `.github/workflows/ci.yml`
-7. Code documentation: `docs/CODEBASE_DOCUMENTATION.md`
-8. MIT license: `LICENSE`
+3. Actor sample input: `.actor/sample_input.json`
+4. Output schema: `.actor/output_schema.json`
+5. Actor folder reference: `.actor/README.md`
+6. Apify deployment phases: `docs/PHASES_GIT_TO_APIFY.md`
+7. Apify deployment guide: `docs/APIFY_DEPLOYMENT_GUIDE.md`
+8. CI workflow: `.github/workflows/ci.yml`
+9. Code documentation: `docs/CODEBASE_DOCUMENTATION.md`
+10. MIT license: `LICENSE`
 
 ## Deployment Flow Summary
 
@@ -108,7 +110,7 @@ If `ENABLE_PROXY=false`, proxy is not used.
 3. Choose GitHub source and select this repository/branch.
 4. Confirm Actor picks up `.actor/actor.json` and `.actor/input_schema.json`.
 5. Build Actor.
-6. Open Input tab and use form or paste JSON from `docs/sample_input.json`.
+6. Open Input tab and use form or paste JSON from `.actor/sample_input.json`.
 7. Run and inspect logs plus dataset results.
 
 ## Notes

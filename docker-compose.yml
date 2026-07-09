@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: ai-job-finder
-    command: ["python", "main.py", "run-local", "--input-file", "docs/sample_input.json", "--output-file", "exports/jobs.json"]
+    command: ["python", "main.py", "run-local", "--input-file", ".actor/sample_input.json", "--output-file", "exports/jobs.json"]
     volumes:
       - ./exports:/app/exports
       - ./logs:/app/logs

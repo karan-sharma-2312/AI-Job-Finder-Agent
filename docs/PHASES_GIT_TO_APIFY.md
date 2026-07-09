@@ -16,7 +16,7 @@ python -m venv .venv
 pip install -r requirements.txt
 python -m playwright install
 python -m pytest -q
-python main.py run-local --input-file docs/sample_input.json --output-file exports/jobs_local.json
+python main.py run-local --input-file .actor/sample_input.json --output-file exports/jobs_local.json
 ```
 
 ## Phase 2: Integration Validation
@@ -67,7 +67,7 @@ git push -u origin main
 2. Connect GitHub repository.
 3. Ensure `.actor/actor.json` and `.actor/input_schema.json` are detected.
 4. Build Actor with `Dockerfile`.
-5. Run with sample input from `docs/sample_input.json`.
+5. Run with sample input from `.actor/sample_input.json`.
 
 ## Phase 6: Apify Runtime Validation
 
