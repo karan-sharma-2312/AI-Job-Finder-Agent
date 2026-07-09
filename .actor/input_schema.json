@@ -1,0 +1,212 @@
+{
+  "title": "AI Job Finder Agent Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "keywords": {
+      "title": "Keywords",
+      "type": "array",
+      "description": "Mandatory. List of role or skill keywords to search.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "prefill": [
+        "Python",
+        "SDET",
+        "Automation Engineer",
+        "AI Engineer",
+        "LLM Engineer"
+      ]
+    },
+    "locations": {
+      "title": "Locations",
+      "type": "array",
+      "description": "Mandatory. List of target locations.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "prefill": [
+        "India",
+        "Remote",
+        "Jaipur",
+        "Noida",
+        "Gurgaon",
+        "Bangalore",
+        "Pune",
+        "Hyderabad"
+      ]
+    },
+    "minimumExperience": {
+      "title": "Minimum Experience",
+      "type": "integer",
+      "minimum": 0,
+      "default": 3
+    },
+    "maximumExperience": {
+      "title": "Maximum Experience",
+      "type": "integer",
+      "minimum": 0,
+      "default": 5
+    },
+    "minimumSalary": {
+      "title": "Minimum Salary",
+      "type": "integer",
+      "minimum": 0,
+      "default": 800000
+    },
+    "maximumSalary": {
+      "title": "Maximum Salary",
+      "type": "integer",
+      "minimum": 0,
+      "default": 3000000
+    },
+    "employmentType": {
+      "title": "Employment Type",
+      "type": "array",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      },
+      "prefill": [
+        "Full Time"
+      ]
+    },
+    "remoteAllowed": {
+      "title": "Remote Allowed",
+      "type": "boolean",
+      "default": true
+    },
+    "hybridAllowed": {
+      "title": "Hybrid Allowed",
+      "type": "boolean",
+      "default": true
+    },
+    "maxResults": {
+      "title": "Maximum Results",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5000,
+      "default": 500
+    },
+    "enableAIScoring": {
+      "title": "Enable AI Scoring",
+      "type": "boolean",
+      "default": true
+    },
+    "removeDuplicates": {
+      "title": "Remove Duplicates",
+      "type": "boolean",
+      "default": true
+    },
+    "includeCompanyResearch": {
+      "title": "Include Company Research",
+      "type": "boolean",
+      "default": true
+    },
+    "includeHiringManager": {
+      "title": "Include Hiring Manager",
+      "type": "boolean",
+      "default": false
+    },
+    "includeMockData": {
+      "title": "Include Mock Data",
+      "type": "boolean",
+      "description": "Enable only for local debugging. Keep false for real job output.",
+      "default": false
+    },
+    "includeCompanies": {
+      "title": "Include Companies",
+      "type": "array",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "excludeCompanies": {
+      "title": "Exclude Companies",
+      "type": "array",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "excludeRecruiters": {
+      "title": "Exclude Recruiters",
+      "type": "array",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "excludeKeywords": {
+      "title": "Exclude Keywords",
+      "type": "array",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blacklist": {
+      "title": "Blacklist",
+      "type": "array",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "whitelist": {
+      "title": "Whitelist",
+      "type": "array",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "postedToday": {
+      "title": "Posted Today",
+      "type": "boolean",
+      "default": false
+    },
+    "postedThisWeek": {
+      "title": "Posted This Week",
+      "type": "boolean",
+      "default": true
+    },
+    "postedThisMonth": {
+      "title": "Posted This Month",
+      "type": "boolean",
+      "default": false
+    },
+    "customSearchUrls": {
+      "title": "Custom Search URLs",
+      "type": "array",
+      "editor": "stringList",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "prefill": [
+        "https://boards.greenhouse.io/openai"
+      ]
+    },
+    "aiProvider": {
+      "title": "AI Provider",
+      "type": "string",
+      "enum": [
+        "auto",
+        "openai",
+        "gemini",
+        "none"
+      ],
+      "default": "auto"
+    }
+  },
+  "required": [
+    "keywords",
+    "locations"
+  ]
+}

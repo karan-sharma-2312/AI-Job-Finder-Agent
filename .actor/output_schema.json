@@ -1,0 +1,313 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/ai-job-finder/output_schema.json",
+  "title": "AI Job Finder Output Schema",
+  "type": "array",
+  "items": {
+    "oneOf": [
+      {
+        "$ref": "#/$defs/JobRecord"
+      },
+      {
+        "$ref": "#/$defs/RunSummaryRecord"
+      }
+    ]
+  },
+  "$defs": {
+    "JobRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "company",
+        "title",
+        "location",
+        "remote",
+        "hybrid",
+        "skills",
+        "job_description",
+        "source"
+      ],
+      "properties": {
+        "company": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "experience": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "salary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "remote": {
+          "type": "boolean"
+        },
+        "hybrid": {
+          "type": "boolean"
+        },
+        "employment_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "job_description": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "company_career_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "apply_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "company_website": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "company_size": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "industry": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "technologies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recruiter": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "posted_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "benefits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ai_match_score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "ai_summary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "missing_skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "resume_suggestions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "interview_topics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reason_for_match": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "duplicate_detection_result": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence_score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "not": {
+        "required": [
+          "recordType"
+        ]
+      }
+    },
+    "RunSummaryRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recordType",
+        "generatedAt",
+        "requestMeta",
+        "counts",
+        "sourceDiagnostics"
+      ],
+      "properties": {
+        "recordType": {
+          "type": "string",
+          "const": "RUN_SUMMARY"
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "requestMeta": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": [
+            "keywords",
+            "locations",
+            "maxResults",
+            "removeDuplicates"
+          ],
+          "properties": {
+            "keywords": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "locations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "maxResults": {
+              "type": "integer"
+            },
+            "removeDuplicates": {
+              "type": "boolean"
+            }
+          }
+        },
+        "counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "collected",
+            "afterFilters",
+            "duplicatesRemoved",
+            "returned"
+          ],
+          "properties": {
+            "collected": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "afterFilters": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "duplicatesRemoved": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "returned": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "sourceDiagnostics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source",
+              "status",
+              "duration_ms",
+              "item_count",
+              "error"
+            ],
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "success",
+                  "failed"
+                ]
+              },
+              "duration_ms": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "item_count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "error": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
