@@ -42,30 +42,35 @@
     },
     "minimumExperience": {
       "title": "Minimum Experience",
+      "description": "Minimum years of experience required.",
       "type": "integer",
       "minimum": 0,
       "default": 3
     },
     "maximumExperience": {
       "title": "Maximum Experience",
+      "description": "Maximum years of experience allowed.",
       "type": "integer",
       "minimum": 0,
       "default": 5
     },
     "minimumSalary": {
       "title": "Minimum Salary",
+      "description": "Minimum annual salary filter in local currency units.",
       "type": "integer",
       "minimum": 0,
       "default": 800000
     },
     "maximumSalary": {
       "title": "Maximum Salary",
+      "description": "Maximum annual salary filter in local currency units.",
       "type": "integer",
       "minimum": 0,
       "default": 3000000
     },
     "employmentType": {
       "title": "Employment Type",
+      "description": "Allowed employment types (for example Full Time, Contract).",
       "type": "array",
       "editor": "stringList",
       "items": {
@@ -77,16 +82,19 @@
     },
     "remoteAllowed": {
       "title": "Remote Allowed",
+      "description": "Include fully remote jobs.",
       "type": "boolean",
       "default": true
     },
     "hybridAllowed": {
       "title": "Hybrid Allowed",
+      "description": "Include hybrid work jobs.",
       "type": "boolean",
       "default": true
     },
     "maxResults": {
       "title": "Maximum Results",
+      "description": "Maximum number of final job records to return.",
       "type": "integer",
       "minimum": 1,
       "maximum": 5000,
@@ -94,21 +102,25 @@
     },
     "enableAIScoring": {
       "title": "Enable AI Scoring",
+      "description": "Enable optional AI enrichment and scoring when provider keys are available.",
       "type": "boolean",
       "default": true
     },
     "removeDuplicates": {
       "title": "Remove Duplicates",
+      "description": "Remove duplicate jobs by company/title/location/url matching.",
       "type": "boolean",
       "default": true
     },
     "includeCompanyResearch": {
       "title": "Include Company Research",
+      "description": "Attempt additional public company enrichment where available.",
       "type": "boolean",
       "default": true
     },
     "includeHiringManager": {
       "title": "Include Hiring Manager",
+      "description": "Attempt to include recruiter or hiring manager fields where available.",
       "type": "boolean",
       "default": false
     },
@@ -120,6 +132,7 @@
     },
     "includeCompanies": {
       "title": "Include Companies",
+      "description": "Only include jobs from these companies.",
       "type": "array",
       "editor": "stringList",
       "items": {
@@ -128,6 +141,7 @@
     },
     "excludeCompanies": {
       "title": "Exclude Companies",
+      "description": "Exclude jobs from these companies.",
       "type": "array",
       "editor": "stringList",
       "items": {
@@ -136,6 +150,7 @@
     },
     "excludeRecruiters": {
       "title": "Exclude Recruiters",
+      "description": "Exclude jobs posted by these recruiters when recruiter data is available.",
       "type": "array",
       "editor": "stringList",
       "items": {
@@ -144,6 +159,7 @@
     },
     "excludeKeywords": {
       "title": "Exclude Keywords",
+      "description": "Exclude jobs containing these keywords in title or description.",
       "type": "array",
       "editor": "stringList",
       "items": {
@@ -152,6 +168,7 @@
     },
     "blacklist": {
       "title": "Blacklist",
+      "description": "Global exclusion terms applied across company, title, and description.",
       "type": "array",
       "editor": "stringList",
       "items": {
@@ -160,6 +177,7 @@
     },
     "whitelist": {
       "title": "Whitelist",
+      "description": "Prefer/include jobs matching these terms.",
       "type": "array",
       "editor": "stringList",
       "items": {
@@ -168,21 +186,25 @@
     },
     "postedToday": {
       "title": "Posted Today",
+      "description": "Prioritize jobs posted today.",
       "type": "boolean",
       "default": false
     },
     "postedThisWeek": {
       "title": "Posted This Week",
+      "description": "Prioritize jobs posted in the last 7 days.",
       "type": "boolean",
       "default": true
     },
     "postedThisMonth": {
       "title": "Posted This Month",
+      "description": "Prioritize jobs posted in the last 30 days.",
       "type": "boolean",
       "default": false
     },
     "customSearchUrls": {
       "title": "Custom Search URLs",
+      "description": "Additional direct source URLs (for example Greenhouse boards) to crawl.",
       "type": "array",
       "editor": "stringList",
       "items": {
@@ -195,6 +217,7 @@
     },
     "aiProvider": {
       "title": "AI Provider",
+      "description": "AI provider selection: auto, openai, gemini, or none.",
       "type": "string",
       "enum": [
         "auto",
