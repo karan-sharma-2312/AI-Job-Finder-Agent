@@ -1,6 +1,31 @@
 # AI Job Finder Agent
 
-Production-grade Python Actor for multi-source job discovery, parser normalization, filtering, deduplication, and optional AI scoring.
+Python Apify Actor that finds jobs from LinkedIn and Indeed, normalizes the data into one format, applies your filters, removes duplicates, and returns a clean dataset ready for review or automation.
+
+## What This Tool Is For
+
+Use this tool when you want one repeatable job-search pipeline instead of manually checking multiple portals.
+
+It is built for:
+
+1. Job seekers who want targeted results (skills, locations, experience, salary).
+2. Recruiters or talent teams who want a structured feed of matching roles.
+3. Automation workflows that need job data in consistent JSON format.
+
+## What You Can Do With It
+
+1. Search LinkedIn and Indeed in one run.
+2. Filter by keywords, location, experience, salary, job type, and posting recency.
+3. Exclude unwanted terms, companies, or recruiter names.
+4. Get run diagnostics (per-source counts, timings, and errors) for troubleshooting.
+5. Use output in Apify Dataset, APIs, dashboards, or downstream scripts.
+
+## Typical Use Cases
+
+1. Daily job monitoring for AI Engineer, SDET, Python, and automation roles.
+2. Building a personal job tracker from fresh postings.
+3. Feeding BI/reporting systems with normalized hiring market data.
+4. Running scheduled actor jobs and alerting on newly matched roles.
 
 ## What Is Ready
 
@@ -47,26 +72,26 @@ Local output files now contain both jobs and summary:
 
 ```json
 {
-	"jobs": [ ... ],
-	"summary": {
-		"generatedAt": "...",
-		"requestMeta": { ... },
-		"counts": {
-			"collected": 0,
-			"afterFilters": 0,
-			"duplicatesRemoved": 0,
-			"returned": 0
-		},
-		"sourceDiagnostics": [
-			{
-				"source": "linkedin",
-				"status": "success|failed",
-				"duration_ms": 123,
-				"item_count": 0,
-				"error": null
-			}
-		]
-	}
+  "jobs": [ ... ],
+  "summary": {
+    "generatedAt": "...",
+    "requestMeta": { ... },
+    "counts": {
+      "collected": 0,
+      "afterFilters": 0,
+      "duplicatesRemoved": 0,
+      "returned": 0
+    },
+    "sourceDiagnostics": [
+      {
+        "source": "linkedin",
+        "status": "success|failed",
+        "duration_ms": 123,
+        "item_count": 0,
+        "error": null
+      }
+    ]
+  }
 }
 ```
 
