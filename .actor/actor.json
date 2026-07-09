@@ -14,7 +14,6 @@
   "runCommand": "python main.py run-actor",
   "storages": {
     "dataset": "default",
-    "keyValueStore": "default",
-    "requestQueue": "default"
+    "keyValueStore": "default"
   }
 }
