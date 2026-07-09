@@ -208,8 +208,7 @@
       "type": "array",
       "editor": "stringList",
       "items": {
-        "type": "string",
-        "format": "uri"
+        "type": "string"
       },
       "prefill": [
         "https://boards.greenhouse.io/openai"
