@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from src.plugins.templates import GreenhouseJobsPlugin, IndeedJobsPlugin, LinkedInJobsPlugin
+from src.plugins.templates import IndeedJobsPlugin, LinkedInJobsPlugin
 from src.schemas.input_schema import JobSearchInput
 
 
@@ -53,32 +53,3 @@ async def test_indeed_template_plugin_returns_canonical_jobs() -> None:
     assert jobs
     assert jobs[0].source == "indeed"
 
-
-@pytest.mark.asyncio
-async def test_greenhouse_template_plugin_returns_canonical_jobs() -> None:
-    class _FakeHttpClient:
-        async def get_json(self, url: str, params: dict | None = None) -> dict:
-            return {
-                "company": "Template Co",
-                "jobs": [
-                    {
-                        "title": "LLM Engineer",
-                        "location": {"name": "Bangalore"},
-                        "absolute_url": "https://boards.greenhouse.io/template/jobs/1",
-                        "updated_at": "2026-07-01T00:00:00Z",
-                        "content": "<p>Work on LLM systems.</p>",
-                    }
-                ],
-            }
-
-    plugin = GreenhouseJobsPlugin(http_client=_FakeHttpClient())
-    request = JobSearchInput(
-        keywords=["LLM Engineer"],
-        locations=["Bangalore"],
-        customSearchUrls=["https://boards.greenhouse.io/template"],
-    )
-
-    jobs = await plugin.collect_jobs(request)
-
-    assert jobs
-    assert jobs[0].source == "greenhouse"

@@ -33,6 +33,7 @@ class IndeedJobsPlugin(JobSourcePlugin):
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
             "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
         }
+        base_urls = ["https://in.indeed.com/jobs", "https://www.indeed.com/jobs"]
 
         collected: list[JobPosting] = []
         seen: set[str] = set()
@@ -41,20 +42,30 @@ class IndeedJobsPlugin(JobSourcePlugin):
             for location in request.locations:
                 for start in (0, 10, 20, 30):
                     html = ""
+                    active_base_url = "https://www.indeed.com"
 
-                    try:
-                        html = await self.http_client.get_text(
-                            "https://www.indeed.com/jobs",
-                            params={"q": keyword, "l": location, "start": start},
-                            headers=headers,
-                        )
-                    except Exception:
-                        html = ""
+                    for search_url in base_urls:
+                        try:
+                            html = await self.http_client.get_text(
+                                search_url,
+                                params={"q": keyword, "l": location, "start": start},
+                                headers=headers,
+                            )
+                            if html:
+                                active_base_url = search_url.replace("/jobs", "")
+                                break
+                        except Exception:
+                            html = ""
 
                     if not html:
                         continue
 
-                    parsed = parse_indeed_jobs(html, source=self.source_name, keywords=request.keywords)
+                    parsed = parse_indeed_jobs(
+                        html,
+                        source=self.source_name,
+                        keywords=request.keywords,
+                        base_url=active_base_url,
+                    )
                     for job in parsed:
                         dedupe_key = self._job_key(job)
                         if dedupe_key in seen:

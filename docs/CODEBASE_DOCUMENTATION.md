@@ -47,13 +47,6 @@ This document explains the purpose of each major file so future updates are fast
 - Live staged extraction from Indeed search HTML.
 - Parsed by `src/parsers/indeed_parser.py`.
 
-4. `src/plugins/templates/greenhouse_plugin.py`
-- Live board endpoint integration.
-- Parsed by `src/parsers/greenhouse_parser.py`.
-
-5. `src/plugins/mock_jobs_plugin.py`
-- Deterministic fallback source for local development.
-
 ## Scrapers
 
 1. `src/scrapers/http_client.py`
@@ -70,9 +63,6 @@ This document explains the purpose of each major file so future updates are fast
 
 2. `src/parsers/indeed_parser.py`
 - Normalizes Indeed HTML cards into canonical model.
-
-3. `src/parsers/greenhouse_parser.py`
-- Normalizes Greenhouse board API payload into canonical model.
 
 ## Actor And Deployment Files
 
@@ -99,13 +89,10 @@ This document explains the purpose of each major file so future updates are fast
 3. `tests/test_input_schema.py`
 - Input validation behavior.
 
-4. `tests/test_greenhouse_live_integration.py`
-- Greenhouse parser + plugin integration phase.
-
-5. `tests/test_linkedin_indeed_live_integration.py`
+4. `tests/test_linkedin_indeed_live_integration.py`
 - LinkedIn/Indeed parser + plugin integration phase.
 
-6. `tests/test_template_plugins.py`
+5. `tests/test_template_plugins.py`
 - Plugin-level canonical output checks.
 
 ## CI And Scripts

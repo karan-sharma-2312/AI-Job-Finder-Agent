@@ -14,8 +14,7 @@ from rich.table import Table
 
 from src.config.settings import get_settings
 from src.core.plugin_manager import PluginManager
-from src.plugins.mock_jobs_plugin import MockJobsPlugin
-from src.plugins.templates import GreenhouseJobsPlugin, IndeedJobsPlugin, LinkedInJobsPlugin
+from src.plugins.templates import IndeedJobsPlugin, LinkedInJobsPlugin
 from src.schemas.input_schema import JobSearchInput
 from src.scrapers.http_client import RetrySafeHttpClient
 from src.scrapers.playwright_client import RetrySafePlaywrightClient
@@ -47,9 +46,6 @@ def _build_plugin_manager(request: JobSearchInput, settings: Any) -> PluginManag
     manager = PluginManager()
     manager.register(LinkedInJobsPlugin(http_client=http_client, browser_client=browser_client))
     manager.register(IndeedJobsPlugin(http_client=http_client))
-    manager.register(GreenhouseJobsPlugin(http_client=http_client))
-    if request.includeMockData:
-        manager.register(MockJobsPlugin())
     return manager
 
 

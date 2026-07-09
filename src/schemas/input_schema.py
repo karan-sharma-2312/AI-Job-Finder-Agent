@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Literal
 from typing import List
 
-from pydantic import BaseModel, Field, HttpUrl, ValidationInfo, field_validator, model_validator
+from pydantic import BaseModel, Field, ValidationInfo, field_validator, model_validator
 
 
 class JobSearchInput(BaseModel):
@@ -23,7 +23,6 @@ class JobSearchInput(BaseModel):
     removeDuplicates: bool = True
     includeCompanyResearch: bool = True
     includeHiringManager: bool = False
-    includeMockData: bool = False
     includeCompanies: List[str] = Field(default_factory=list)
     excludeCompanies: List[str] = Field(default_factory=list)
     excludeRecruiters: List[str] = Field(default_factory=list)
@@ -33,7 +32,6 @@ class JobSearchInput(BaseModel):
     postedToday: bool = False
     postedThisWeek: bool = False
     postedThisMonth: bool = False
-    customSearchUrls: List[HttpUrl] = Field(default_factory=list)
     aiProvider: Literal["auto", "openai", "gemini", "none"] = "auto"
 
     @field_validator("maximumExperience")

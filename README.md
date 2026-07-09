@@ -6,7 +6,7 @@ Production-grade Python Actor for multi-source job discovery, parser normalizati
 
 1. Local CLI runtime and Apify runtime in `main.py`.
 2. Plugin architecture with independent source adapters.
-3. Live conversion phases for Greenhouse, LinkedIn, and Indeed (with graceful fallbacks).
+3. Live conversion phases for LinkedIn and Indeed (with graceful fallbacks).
 4. Retry-safe scraper interfaces (HTTP and browser abstraction).
 5. Parser + fixture tests for each live-converted source.
 6. Docker and Docker Compose setup.
@@ -116,8 +116,7 @@ If `ENABLE_PROXY=false`, proxy is not used.
 ## Notes
 
 1. Some job portals can block anonymous scraping; plugins are implemented to fail safely without crashing the run.
-2. Greenhouse integration supports real board endpoints through `customSearchUrls`.
-3. LinkedIn and Indeed integrations include staged live extraction plus parser normalization with fixture-backed tests.
+2. LinkedIn and Indeed integrations include staged live extraction plus parser normalization with fixture-backed tests.
 
 ## License
 
