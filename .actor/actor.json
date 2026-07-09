@@ -13,7 +13,7 @@
     "keyValueStore": "./key_value_store_schema.json"
   },
   "exampleRunInput": {
-    "body": "{\"keywords\":[\"Python\",\"SDET\",\"Automation Engineer\",\"AI Engineer\",\"LLM Engineer\"],\"locations\":[\"India\",\"Remote\",\"Jaipur\",\"Noida\",\"Gurgaon\",\"Bangalore\",\"Pune\",\"Hyderabad\"],\"minimumExperience\":3,\"maximumExperience\":5,\"minimumSalary\":800000,\"maximumSalary\":3000000,\"employmentType\":[\"Full Time\"],\"remoteAllowed\":true,\"hybridAllowed\":true,\"maxResults\":500,\"enableAIScoring\":true,\"removeDuplicates\":true,\"includeCompanyResearch\":true,\"includeHiringManager\":false,\"includeMockData\":false,\"includeCompanies\":[],\"excludeCompanies\":[],\"excludeRecruiters\":[],\"excludeKeywords\":[],\"blacklist\":[],\"whitelist\":[],\"postedToday\":false,\"postedThisWeek\":true,\"postedThisMonth\":false,\"customSearchUrls\":[\"https://boards.greenhouse.io/openai\"],\"aiProvider\":\"auto\"}",
+    "body": "{\"keywords\":[\"Python\",\"SDET\",\"Automation Engineer\",\"AI Engineer\",\"LLM Engineer\"],\"locations\":[\"India\",\"Remote\",\"Jaipur\",\"Noida\",\"Gurgaon\",\"Bangalore\",\"Pune\",\"Hyderabad\"],\"minimumExperience\":3,\"maximumExperience\":5,\"minimumSalary\":800000,\"maximumSalary\":3000000,\"employmentType\":[\"Full Time\"],\"remoteAllowed\":true,\"hybridAllowed\":true,\"maxResults\":500,\"enableAIScoring\":true,\"removeDuplicates\":true,\"includeCompanyResearch\":true,\"includeHiringManager\":false,\"includeCompanies\":[],\"excludeCompanies\":[],\"excludeRecruiters\":[],\"excludeKeywords\":[],\"blacklist\":[],\"whitelist\":[],\"postedToday\":false,\"postedThisWeek\":true,\"postedThisMonth\":false,\"aiProvider\":\"auto\"}",
     "contentType": "application/json"
   },
   "runCommand": "python main.py run-actor"

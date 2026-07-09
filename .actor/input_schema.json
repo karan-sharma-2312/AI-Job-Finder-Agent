@@ -124,12 +124,6 @@
       "type": "boolean",
       "default": false
     },
-    "includeMockData": {
-      "title": "Include Mock Data",
-      "type": "boolean",
-      "description": "Enable only for local debugging. Keep false for real job output.",
-      "default": false
-    },
     "includeCompanies": {
       "title": "Include Companies",
       "description": "Only include jobs from these companies.",
@@ -201,18 +195,6 @@
       "description": "Prioritize jobs posted in the last 30 days.",
       "type": "boolean",
       "default": false
-    },
-    "customSearchUrls": {
-      "title": "Custom Search URLs",
-      "description": "Additional direct source URLs (for example Greenhouse boards) to crawl.",
-      "type": "array",
-      "editor": "stringList",
-      "items": {
-        "type": "string"
-      },
-      "prefill": [
-        "https://boards.greenhouse.io/openai"
-      ]
     },
     "aiProvider": {
       "title": "AI Provider",

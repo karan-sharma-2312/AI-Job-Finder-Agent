@@ -30,7 +30,6 @@
   "removeDuplicates": true,
   "includeCompanyResearch": true,
   "includeHiringManager": false,
-  "includeMockData": false,
   "includeCompanies": [],
   "excludeCompanies": [],
   "excludeRecruiters": [],
@@ -40,8 +39,5 @@
   "postedToday": false,
   "postedThisWeek": true,
   "postedThisMonth": false,
-  "customSearchUrls": [
-    "https://boards.greenhouse.io/openai"
-  ],
   "aiProvider": "auto"
 }
