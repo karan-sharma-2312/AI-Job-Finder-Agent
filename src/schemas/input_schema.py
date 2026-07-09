@@ -23,6 +23,7 @@ class JobSearchInput(BaseModel):
     removeDuplicates: bool = True
     includeCompanyResearch: bool = True
     includeHiringManager: bool = False
+    includeMockData: bool = False
     includeCompanies: List[str] = Field(default_factory=list)
     excludeCompanies: List[str] = Field(default_factory=list)
     excludeRecruiters: List[str] = Field(default_factory=list)

@@ -79,7 +79,7 @@ class JobPipelineService:
             filtered = [
                 job
                 for job in filtered
-                if job.employment_type is not None and job.employment_type.lower() in allowed_types
+                if job.employment_type is None or job.employment_type.lower() in allowed_types
             ]
 
         if not request.hybridAllowed:

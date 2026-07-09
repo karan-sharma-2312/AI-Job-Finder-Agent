@@ -33,7 +33,7 @@ def _load_request(input_file: Path | None) -> JobSearchInput:
     return JobSearchInput.model_validate(payload)
 
 
-def _build_plugin_manager(settings: Any) -> PluginManager:
+def _build_plugin_manager(request: JobSearchInput, settings: Any) -> PluginManager:
     proxy_url = settings.proxy_url if settings.enable_proxy else None
     http_client = RetrySafeHttpClient(
         proxy_url=proxy_url,
@@ -48,12 +48,13 @@ def _build_plugin_manager(settings: Any) -> PluginManager:
     manager.register(LinkedInJobsPlugin(http_client=http_client, browser_client=browser_client))
     manager.register(IndeedJobsPlugin(http_client=http_client))
     manager.register(GreenhouseJobsPlugin(http_client=http_client))
-    manager.register(MockJobsPlugin())
+    if request.includeMockData:
+        manager.register(MockJobsPlugin())
     return manager
 
 
 async def _run_pipeline(request: JobSearchInput, settings: Any) -> dict[str, Any]:
-    manager = _build_plugin_manager(settings)
+    manager = _build_plugin_manager(request, settings)
     pipeline = JobPipelineService(manager)
     jobs, summary = await pipeline.run_with_diagnostics(request)
     return {

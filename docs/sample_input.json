@@ -30,6 +30,7 @@
   "removeDuplicates": true,
   "includeCompanyResearch": true,
   "includeHiringManager": false,
+  "includeMockData": false,
   "includeCompanies": [],
   "excludeCompanies": [],
   "excludeRecruiters": [],
