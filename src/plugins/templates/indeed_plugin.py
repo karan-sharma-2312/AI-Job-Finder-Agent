@@ -17,27 +17,52 @@ class IndeedJobsPlugin(JobSourcePlugin):
     def source_name(self) -> str:
         return "indeed"
 
-    async def collect_jobs(self, request: JobSearchInput) -> list[JobPosting]:
-        keyword = request.keywords[0]
-        location = request.locations[0]
+    @staticmethod
+    def _job_key(job: JobPosting) -> str:
+        return "::".join(
+            [
+                job.company.strip().lower(),
+                job.title.strip().lower(),
+                job.location.strip().lower(),
+                str(job.apply_url or "").strip().lower(),
+            ]
+        )
 
+    async def collect_jobs(self, request: JobSearchInput) -> list[JobPosting]:
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
             "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
         }
 
-        html = ""
+        collected: list[JobPosting] = []
+        seen: set[str] = set()
 
-        try:
-            html = await self.http_client.get_text(
-                "https://www.indeed.com/jobs",
-                params={"q": keyword, "l": location},
-                headers=headers,
-            )
-        except Exception:
-            html = ""
+        for keyword in request.keywords:
+            for location in request.locations:
+                for start in (0, 10, 20, 30):
+                    html = ""
 
-        if not html:
-            return []
+                    try:
+                        html = await self.http_client.get_text(
+                            "https://www.indeed.com/jobs",
+                            params={"q": keyword, "l": location, "start": start},
+                            headers=headers,
+                        )
+                    except Exception:
+                        html = ""
 
-        return parse_indeed_jobs(html, source=self.source_name, keywords=request.keywords)
+                    if not html:
+                        continue
+
+                    parsed = parse_indeed_jobs(html, source=self.source_name, keywords=request.keywords)
+                    for job in parsed:
+                        dedupe_key = self._job_key(job)
+                        if dedupe_key in seen:
+                            continue
+                        seen.add(dedupe_key)
+                        collected.append(job)
+
+                    if len(collected) >= request.maxResults:
+                        return collected[: request.maxResults]
+
+        return collected[: request.maxResults]
