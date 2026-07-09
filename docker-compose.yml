@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  ai-job-finder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-job-finder
+    command: ["python", "main.py", "run-local", "--input-file", "docs/sample_input.json", "--output-file", "exports/jobs.json"]
+    volumes:
+      - ./exports:/app/exports
+      - ./logs:/app/logs
+    env_file:
+      - .env

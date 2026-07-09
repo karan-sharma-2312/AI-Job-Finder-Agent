@@ -1,0 +1,45 @@
+{
+  "company": "Acme Careers",
+  "jobs": [
+    {
+      "id": 101,
+      "title": "Senior Python Engineer",
+      "location": {
+        "name": "Remote - India"
+      },
+      "absolute_url": "https://boards.greenhouse.io/acme/jobs/101",
+      "updated_at": "2026-07-01T10:30:00Z",
+      "content": "<p>Build Python services and automation workflows.</p>",
+      "metadata": [
+        {
+          "name": "Employment Type",
+          "value": "Full Time"
+        },
+        {
+          "name": "Experience",
+          "value": "5+ years"
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "title": "LLM Platform Engineer",
+      "location": {
+        "name": "Bangalore (Hybrid)"
+      },
+      "absolute_url": "https://boards.greenhouse.io/acme/jobs/102",
+      "updated_at": "2026-07-02T08:15:00Z",
+      "content": "<p>Work on LangChain pipelines and LLM evaluation.</p>",
+      "metadata": [
+        {
+          "name": "Employment Type",
+          "value": "Full Time"
+        },
+        {
+          "name": "Compensation",
+          "value": "18-28 LPA"
+        }
+      ]
+    }
+  ]
+}

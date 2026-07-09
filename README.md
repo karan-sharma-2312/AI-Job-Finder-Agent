@@ -1,0 +1,122 @@
+# AI Job Finder Agent
+
+Production-grade Python Actor for multi-source job discovery, parser normalization, filtering, deduplication, and optional AI scoring.
+
+## What Is Ready
+
+1. Local CLI runtime and Apify runtime in `main.py`.
+2. Plugin architecture with independent source adapters.
+3. Live conversion phases for Greenhouse, LinkedIn, and Indeed (with graceful fallbacks).
+4. Retry-safe scraper interfaces (HTTP and browser abstraction).
+5. Parser + fixture tests for each live-converted source.
+6. Docker and Docker Compose setup.
+7. Apify input schema and actor metadata files.
+8. GitHub Actions CI for automated tests.
+9. Source-level diagnostics and run-summary output.
+10. Proxy hooks for HTTP and browser scraper clients.
+
+## Runtime Commands
+
+Local run:
+
+```powershell
+python main.py run-local --input-file docs/sample_input.json --output-file exports/jobs.json
+```
+
+Apify run:
+
+```powershell
+python main.py run-actor
+```
+
+Run all tests:
+
+```powershell
+python -m pytest -q
+```
+
+Preflight script before Git push:
+
+```powershell
+./scripts/preflight.ps1
+```
+
+## Output Bundle Format
+
+Local output files now contain both jobs and summary:
+
+```json
+{
+	"jobs": [ ... ],
+	"summary": {
+		"generatedAt": "...",
+		"requestMeta": { ... },
+		"counts": {
+			"collected": 0,
+			"afterFilters": 0,
+			"duplicatesRemoved": 0,
+			"returned": 0
+		},
+		"sourceDiagnostics": [
+			{
+				"source": "linkedin",
+				"status": "success|failed",
+				"duration_ms": 123,
+				"item_count": 0,
+				"error": null
+			}
+		]
+	}
+}
+```
+
+In Apify dataset output, jobs are pushed first and one additional run-summary record is pushed with `recordType: RUN_SUMMARY`.
+
+## Proxy Configuration
+
+Use `.env` values:
+
+1. `ENABLE_PROXY=true`
+2. `PROXY_URL=http://username:password@host:port`
+
+If `ENABLE_PROXY=false`, proxy is not used.
+
+## Important Files
+
+1. Actor metadata: `.actor/actor.json`
+2. Actor GUI input schema: `.actor/input_schema.json`
+3. Sample JSON input: `docs/sample_input.json`
+4. Apify deployment phases: `docs/PHASES_GIT_TO_APIFY.md`
+5. Apify deployment guide: `docs/APIFY_DEPLOYMENT_GUIDE.md`
+6. CI workflow: `.github/workflows/ci.yml`
+7. Code documentation: `docs/CODEBASE_DOCUMENTATION.md`
+8. MIT license: `LICENSE`
+
+## Deployment Flow Summary
+
+1. Validate local pipeline and tests.
+2. Commit and push to GitHub.
+3. Confirm CI green on GitHub Actions.
+4. Create Actor in Apify GUI and connect this repository.
+5. Build using Dockerfile and run with input form/JSON.
+6. Verify Dataset output and logs.
+
+## Upload This Actor To Apify Using GitHub
+
+1. Push repository to GitHub.
+2. In Apify Console, create new Actor.
+3. Choose GitHub source and select this repository/branch.
+4. Confirm Actor picks up `.actor/actor.json` and `.actor/input_schema.json`.
+5. Build Actor.
+6. Open Input tab and use form or paste JSON from `docs/sample_input.json`.
+7. Run and inspect logs plus dataset results.
+
+## Notes
+
+1. Some job portals can block anonymous scraping; plugins are implemented to fail safely without crashing the run.
+2. Greenhouse integration supports real board endpoints through `customSearchUrls`.
+3. LinkedIn and Indeed integrations include staged live extraction plus parser normalization with fixture-backed tests.
+
+## License
+
+This project is licensed under the MIT License. See `LICENSE`.
